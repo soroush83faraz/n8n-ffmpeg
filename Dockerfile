@@ -3,11 +3,12 @@ FROM n8nio/n8n:latest
 
 # Install ffmpeg
 USER root
-RUN apk add --no-cache ffmpeg 
 
-# Install yt-dlp (download binary from GitHub)
-RUN wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -O /usr/bin/yt-dlp \
-    && chmod +x /usr/bin/yt-dlp
+# Install ffmpeg + python3
+RUN apk add --no-cache ffmpeg python3 py3-pip wget
+
+# Install yt-dlp (Python script)
+RUN pip install --no-cache-dir yt-dlp
 
 # Switch back to node user (important for n8n to run properly)
 USER node
