@@ -13,16 +13,7 @@ RUN apk add --no-cache \
     make \
     wget
 
-# Upgrade pip
-RUN pip install --no-cache-dir --upgrade pip
-
 # Install yt-dlp
 RUN pip install --no-cache-dir yt-dlp
-
-# Optional: cleanup build deps to reduce image size
-RUN apk del gcc musl-dev make libffi-dev
-
-# Test yt-dlp
-RUN yt-dlp --version
 
 USER node
